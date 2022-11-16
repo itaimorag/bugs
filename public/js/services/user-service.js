@@ -7,17 +7,27 @@ export const userService = {
     login,
     logout,
     signup,
-    getUserBugs
+    getUserBugs,
+    getFullUser,
+    getUsers,
+
 }
 
 function getLoggedInUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
-function getUserBugs(){
+function getUserBugs(user){
     return axios.get("/api/user").then((res) => res.data)
 }
 
+function getUsers(){
+    return axios.get("/api/users").then((res) => res.data)
+}
+
+function getFullUser(){
+    return axios.get("/api/user/full").then((res) => res.data)
+}
 
 function login({ username, password }) {
     return axios.post('/api/auth/login', { username, password })

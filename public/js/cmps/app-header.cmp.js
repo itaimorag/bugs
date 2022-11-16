@@ -10,6 +10,7 @@ export default {
             <section v-if="user">
             <p>Welcome {{user.fullname}}</p>
             <router-link to="/user/details">User Details</router-link>
+            <router-link v-if="isAdmin" to="/user/list">User List</router-link>
             <button @click="logout">Logout</button>
        </section>
        <section v-else>
@@ -20,12 +21,25 @@ export default {
     `,
      data() {
         return {
-            user: userService.getLoggedInUser()
+            user: userService.getLoggedInUser(),
+            isAdmin:false
         }
+    },
+    created(){
+            userService.getFullUser()
+            .then((user) => {
+                console.log(`user = `, user)
+               this.isAdmin = user.isAdmin
+            })
     },
     methods: {
         onChangeLoginStatus() {
             this.user = userService.getLoggedInUser()
+            userService.getFullUser()
+            .then((user) => {
+                console.log(`user = `, user)
+               this.isAdmin = user.isAdmin
+            })
         },
         logout() {
             userService.logout()
@@ -33,6 +47,9 @@ export default {
                     this.user = null
                 })
         }
+    },
+    computed: {
+
     },
     components: {
         loginSignup

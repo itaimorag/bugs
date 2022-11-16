@@ -7,7 +7,7 @@ export default {
   <section>
    
 <router-link to="/bug">To Bugs Page</router-link> 
-<bug-list v-if="userBugs" :bugs="getUserBugs" @removeBug="removeBug"></bug-list>
+<bug-list v-if="userBugs" :bugs="userBugs" @removeBug="removeBug"></bug-list>
     </section>
     `,
   data() {
@@ -20,7 +20,7 @@ export default {
   created(){
     userService.getUserBugs().then(({ totalPages, filteredBugs }) => {
       this.totalPages = totalPages 
-      this.userBugs = {filteredBugs}
+      this.userBugs = filteredBugs
       console.log(`this.userBugs = `,this.userBugs )
     })
 
@@ -30,12 +30,7 @@ export default {
    
   },
   computed: {
-    getUserBugs(){
-      console.log(`this.userBugs = `, this.userBugs)
-      return this.userBugs
-
-
-    }
+  
   },
   components: {
     bugList

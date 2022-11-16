@@ -1,6 +1,8 @@
 const fs = require('fs')
 const Cryptr = require('cryptr')
-const cryptr = new Cryptr('secret-itai-12345')
+
+const cryptr = new Cryptr(process.env.ENCRYPT_KEY)
+
 
 const gUsers = require('../data/user.json')
 

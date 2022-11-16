@@ -1,3 +1,5 @@
+const dotenv = require('dotenv')
+dotenv.config()
 const express = require('express')
 const cookieParser = require('cookie-parser')
 
@@ -30,11 +32,19 @@ app.get('/api/bug', (req, res) => {
     })
 })
 
+app.get('/api/users', (req, res) => {
+  userService.query()
+    .then(users => {
+      res.send(users)
+    })
+})
+
 app.get('/api/user', (req, res) => {
+  const user  = req.query
   const loggedinUser = userService.validateToken(req.cookies.loginToken)
   if (!loggedinUser) return res.status(401).send('Need to be logged in')
 
-  const filterBy = {
+  var filterBy = {
     title:'',
     description:'',
     severity:false,
@@ -44,6 +54,16 @@ app.get('/api/user', (req, res) => {
   bugService.query(filterBy)
     .then(bugs => {
       res.send(bugs)
+    })
+})
+
+app.get('/api/user/full', (req, res) => {
+  const loggedinUser = userService.validateToken(req.cookies.loginToken)
+  if (!loggedinUser) return res.status(401).send('Need to be logged in')
+
+  userService.getById(loggedinUser._id)
+    .then(user => {
+      res.send(user)
     })
 })
 
