@@ -1,0 +1,37 @@
+[
+  {
+    "username": "gdfgdfg",
+    "password": "123",
+    "fullname": "bfgbfgb",
+    "isAdmin": false,
+    "_id": "0zN5X"
+  },
+  {
+    "username": "guli",
+    "password": "buli",
+    "fullname": "Guli Yat",
+    "isAdmin": false,
+    "_id": "Vv58l"
+  },
+  {
+    "fullname": "Puki Ga",
+    "username": "puki",
+    "password": "secret",
+    "isAdmin": false,
+    "_id": "zQuW7"
+  },
+  {
+    "username": "itai",
+    "password": "123",
+    "fullname": "itai hi",
+    "isAdmin": true,
+    "_id": "75b4f"
+  },
+  {
+    "fullname": "Muki Ba",
+    "username": "muki",
+    "password": "secret",
+    "isAdmin": false,
+    "_id": "iFeco"
+  }
+]
